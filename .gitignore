@@ -1,0 +1,44 @@
+# Finder files
+.DS_Store
+._*
+
+# built application files
+*.apk
+*.ap_
+
+# files for the dex VM
+*.dex
+
+# Java class files
+*.class
+
+# generated files
+bin/
+gen/
+target/
+gen-external-apklibs/
+out/
+campusinfo/tmp/
+campusinfo-it/tmp/
+*.versionsBackup
+/campusinfo/res/values/hockeyapp.xml
+/campusinfo/res/values/endpoints.xml
+/campusinfo/res/values/contact.xml
+/campusinfo/res/values/maps.xml
+build
+.gradle
+
+# Local configuration file (sdk path, etc)
+local.properties
+
+# Eclipse project files
+.classpath
+.project
+
+# IntelliJ project files
+*.iml
+.idea
+
+# Libraries, other downloaded files
+libobjectbox*
+objectbox-jni-windows-x64.dll

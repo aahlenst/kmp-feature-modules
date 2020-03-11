@@ -1,0 +1,75 @@
+plugins {
+    id "org.jetbrains.kotlin.multiplatform"
+    id "com.android.library"
+}
+
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion android_sdk_target_version
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    defaultConfig {
+        minSdkVersion android_sdk_min_version
+        targetSdkVersion android_sdk_target_version
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    sourceSets {
+        getByName("main") {
+            manifest.srcFile("src/androidMain/AndroidManifest.xml")
+            java.srcDirs += "src/androidMain/kotlin"
+            res.srcDirs += "src/androidMain/res"
+        }
+    }
+}
+
+kotlin {
+    android()
+
+    sourceSets {
+        commonMain {
+            dependencies {
+                implementation kotlin("stdlib-common")
+            }
+        }
+
+        commonTest {
+            dependencies {
+                implementation kotlin("test-common")
+                implementation kotlin("test-annotations-common")
+            }
+        }
+
+        androidMain {
+            dependencies {
+                implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
+                implementation "androidx.appcompat:appcompat:1.1.0"
+                implementation "androidx.constraintlayout:constraintlayout:2.0.0-beta4"
+                implementation "android.arch.navigation:navigation-fragment-ktx:$androidx_navigation_version"
+                implementation "android.arch.navigation:navigation-ui-ktx:$androidx_navigation_version"
+            }
+        }
+
+        androidTest {
+            dependencies {
+                implementation "junit:junit:$junit_version"
+                implementation "org.jetbrains.kotlin:kotlin-test"
+                implementation "org.jetbrains.kotlin:kotlin-test-junit"
+            }
+        }
+    }
+}
+
+dependencies {
+    androidTestImplementation("junit:junit:$junit_version")
+    androidTestImplementation("org.jetbrains.kotlin:kotlin-test")
+    androidTestImplementation("org.jetbrains.kotlin:kotlin-test-junit")
+}
